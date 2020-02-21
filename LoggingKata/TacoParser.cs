@@ -6,13 +6,24 @@
     public class TacoParser
     {
         readonly ILog logger = new TacoLogger();
-        
         public ITrackable Parse(string line)
         {
-            logger.LogInfo("Begin parsing");
+            //logger.LogInfo("Begin parsing");
+            if (line == null || line == "") return null;
 
+            var cells = line.Split(',');
+
+
+            if (cells.Length != 3)
+            {
+                return null;
+            }
+
+
+            return new TacoBell(cells);
+            // Log that and return null
             // Do not fail if one record parsing fails, return null
-            return null; // TODO Implement
+            // TODO Implement
         }
     }
 }
